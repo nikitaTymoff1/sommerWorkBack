@@ -72,6 +72,20 @@ router.post('/register', function (req, res, next) {
                     const salt = saltHash.salt;
                     const hash = saltHash.hash;
 
+                    const newLog = new Log({
+                        userId: user._id,
+                        date: new Date(),
+                        name: user.name,
+                        role: user.role,
+                    });
+
+                    newLog.save()
+                        .then(user => {
+                            console.log("+1 log")
+                        })
+                        .catch(err => next(err));
+
+
                     const newUser = new User({
                         username: req.body.username,
                         email: req.body.email,
