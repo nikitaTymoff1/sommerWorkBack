@@ -22,7 +22,7 @@ app.use(
     cors({
         allowedHeaders: ["Content-Type", "Authorization"],
         origin: "*",
-        methods: [`GET`, `POST`, `PATCH`, `DELETE`]
+        methods: [`GET`, `POST`, `PUT`, `DELETE`]
     })
 );
 
