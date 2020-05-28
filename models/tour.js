@@ -6,7 +6,7 @@ const TourSchema = new mongoose.Schema({
     Country: String,
     City: String,
     Hotel: String,
-    Excursions: Object,
+    Excursions: String,
     arrival: String,
     departure: String,
     way: String,
