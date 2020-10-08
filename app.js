@@ -7,17 +7,15 @@ var app = express();
 
 require('./config/database');
 require('./models/user');
-require('./models/tourist');
-require('./models/country');
-require('./models/city');
-require('./models/hotel');
-require('./models/excursion');
-require('./models/tour');
-require('./models/airlineCompany');
-require('./models/busCompany');
+require('./models/prices');
+require('./models/drink');
+require('./models/console');
+require('./models/food');
+require('./models/snack');
+require('./models/stuff');
+require('./models/computerClub');
+require('./models/computer');
 require('./models/log');
-
-//TODO змінити таблиці
 
 require('./config/passport')(passport);
 app.use(

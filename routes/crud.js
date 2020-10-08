@@ -1,52 +1,52 @@
 const mongoose = require('mongoose');
 const router = require('express').Router();
 const utils = require('../lib/utils');
-const Tourist = mongoose.model('Tourist');
-const Country = mongoose.model('Country');
+const ComputerClub = mongoose.model('ComputerClub');
+const Computer = mongoose.model('Computer');
 const User = mongoose.model('User');
-const City = mongoose.model('City');
-const Excursion = mongoose.model('Excursion');
-const Hotel = mongoose.model('Hotel');
-const Tour = mongoose.model('Tour');
-const AirlineCompany = mongoose.model('AirlineCompany');
-const BusCompany = mongoose.model('BusCompany');
+const Console = mongoose.model('Console');
+const Drink = mongoose.model('Drink');
+const Food = mongoose.model('Food');
+const Snack = mongoose.model('Snack');
+const Prices = mongoose.model('Prices');
+const Stuff = mongoose.model('Stuff');
 const Log = mongoose.model('Log');
-//-------------TOURIST---------------------------------
-router.post('/createTourist', (req, res, next) => {
-    const newTourist = new Tourist(req.body);
-    newTourist.save()
-        .then(tourist => {
-            console.log('+1 tourist')
-            res.json({success: true, tourist: tourist})
+//-------------ComputerClub---------------------------------
+router.post('/createComputerClub', (req, res, next) => {
+    const newComputerClub = new ComputerClub(req.body);
+    newComputerClub.save()
+        .then(ComputerClub => {
+            console.log('+1 ComputerClub')
+            res.json({success: true, ComputerClub: ComputerClub})
         })
         .catch(err => next(err));
 });
-router.get('/getTourist', (req, res, next) => {
-        Tourist.find({}, (err, tourists) => {
-            let TouristsMap = [];
-            tourists.forEach((tourist, index) => {
-                TouristsMap[index] = tourist;
-            });
-            return res.json(TouristsMap);
-        })
-            .catch(err => next(err));
+router.get('/getComputerClub', (req, res, next) => {
+    ComputerClub.find({}, (err, ComputerClubs) => {
+        let ComputerClubsMap = [];
+        ComputerClubs.forEach((ComputerClub, index) => {
+            ComputerClubsMap[index] = ComputerClub;
+        });
+        return res.json(ComputerClubsMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateTourist', (req, res, next) => {
+router.put('/updateComputerClub', (req, res, next) => {
     const id = req.query.id;
-    Tourist.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    ComputerClub.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteTourist', (req, res, next) => {
+router.delete('/deleteComputerClub', (req, res, next) => {
     const id = req.query.id;
-    Tourist.findByIdAndRemove(id)
+    ComputerClub.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -65,42 +65,42 @@ router.delete('/deleteTourist', (req, res, next) => {
         });
 });
 
-//-------------COUNTRY---------------------------------
-router.post('/createCountry', (req, res, next) => {
-    const newCountry = new Country(req.body);
-    newCountry.save()
-        .then(tourist => {
-            console.log('+1 country')
-            return res.json({success: true, user: tourist})
+//-------------Computer---------------------------------
+router.post('/createComputer', (req, res, next) => {
+    const newComputer = new Computer(req.body);
+    newComputer.save()
+        .then(computer => {
+            console.log('+1 computer')
+            return res.json({success: true, user: computer})
         })
         .catch(err => next(err));
 });
-router.get('/getCountry', (req, res, next) => {
-        Country.find({}, (err, countries) => {
-            let CountryMap = [];
-            countries.forEach((country, index) => {
-                CountryMap[index] = country;
-            });
-            res.json(CountryMap);
-        })
-            .catch(err => next(err));
+router.get('/getComputer', (req, res, next) => {
+    Computer.find({}, (err, countries) => {
+        let ComputerMap = [];
+        countries.forEach((computer, index) => {
+            ComputerMap[index] = computer;
+        });
+        res.json(ComputerMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateCountry', (req, res, next) => {
+router.put('/updateComputer', (req, res, next) => {
     const id = req.query.id;
-    Country.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Computer.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteCountry', (req, res, next) => {
+router.delete('/deleteComputer', (req, res, next) => {
     const id = req.query.id;
-    Country.findByIdAndRemove(id)
+    Computer.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -118,42 +118,42 @@ router.delete('/deleteCountry', (req, res, next) => {
             });
         });
 });
-//-------------CITY---------------------------------
-router.post('/createCity', (req, res, next) => {
-    const newCity = new City(req.body);
-    newCity.save()
-        .then(city => {
-            console.log('+1 city')
-            return res.json({success: true, city: city})
+//-------------Console---------------------------------
+router.post('/createConsole', (req, res, next) => {
+    const newConsole = new Console(req.body);
+    newConsole.save()
+        .then(console => {
+            console.log('+1 console')
+            return res.json({success: true, console: console})
         })
         .catch(err => next(err));
 });
-router.get('/getCity', (req, res, next) => {
-        City.find({}, (err, cities) => {
-            let CityMap = [];
-            cities.forEach((city, index) => {
-                CityMap[index] = city;
-            });
-            res.json(CityMap);
-        })
-            .catch(err => next(err));
+router.get('/getConsole', (req, res, next) => {
+    Console.find({}, (err, cities) => {
+        let ConsoleMap = [];
+        cities.forEach((console, index) => {
+            ConsoleMap[index] = console;
+        });
+        res.json(ConsoleMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateCity', (req, res, next) => {
+router.put('/updateConsole', (req, res, next) => {
     const id = req.query.id;
-    City.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Console.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteCity', (req, res, next) => {
+router.delete('/deleteConsole', (req, res, next) => {
     const id = req.query.id;
-    City.findByIdAndRemove(id)
+    Console.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -171,42 +171,42 @@ router.delete('/deleteCity', (req, res, next) => {
             });
         });
 });
-//----------------EXCURSION-----------------------
-router.post('/createExcursion', (req, res, next) => {
-    const newExcursion = new Excursion(req.body);
-    newExcursion.save()
-        .then(excursion => {
-            console.log('+1 excursion')
-            return res.json({success: true, excursion: excursion})
+//----------------Drink-----------------------
+router.post('/createDrink', (req, res, next) => {
+    const newDrink = new Drink(req.body);
+    newDrink.save()
+        .then(drink => {
+            console.log('+1 drink')
+            return res.json({success: true, drink: drink})
         })
         .catch(err => next(err));
 });
-router.get('/getExcursion', (req, res, next) => {
-        Excursion.find({}, (err, excursions) => {
-            let ExcursionMap = [];
-            excursions.forEach((excursion, index) => {
-                ExcursionMap[index] = excursion;
-            });
-            res.json(ExcursionMap);
-        })
-            .catch(err => next(err));
+router.get('/getDrink', (req, res, next) => {
+    Drink.find({}, (err, drinks) => {
+        let DrinkMap = [];
+        drinks.forEach((drink, index) => {
+            DrinkMap[index] = drink;
+        });
+        res.json(DrinkMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateExcursion', (req, res, next) => {
+router.put('/updateDrink', (req, res, next) => {
     const id = req.query.id;
-    Excursion.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Drink.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteExcursion', (req, res, next) => {
+router.delete('/deleteDrink', (req, res, next) => {
     const id = req.query.id;
-    Excursion.findByIdAndRemove(id)
+    Drink.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -224,42 +224,42 @@ router.delete('/deleteExcursion', (req, res, next) => {
             });
         });
 });
-//----------------BUS-COMPANY---------------------
-router.post('/createBusCompany', (req, res, next) => {
-    const newBusCompany = new BusCompany(req.body);
-    newBusCompany.save()
-        .then(busCompany => {
-            console.log('+1 busCompany')
-            return res.json({success: true, busCompany: busCompany})
+//----------------stuff---------------------
+router.post('/createStuff', (req, res, next) => {
+    const newStuff = new Stuff(req.body);
+    newStuff.save()
+        .then(stuff => {
+            console.log('+1 stuff')
+            return res.json({success: true, stuff: stuff})
         })
         .catch(err => next(err));
 });
-router.get('/getBusCompany', (req, res, next) => {
-        BusCompany.find({}, (err, busCompanies) => {
-            let BusCompanyMap = [];
-            busCompanies.forEach((busCompany, index) => {
-                BusCompanyMap[index] = busCompany;
-            });
-            res.json(BusCompanyMap);
-        })
-            .catch(err => next(err));
+router.get('/getStuff', (req, res, next) => {
+    Stuff.find({}, (err,stuffs) => {
+        let StuffMap = [];
+        stuffs.forEach((stuff, index) => {
+            StuffMap[index] = stuff;
+        });
+        res.json(StuffMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateBusCompany', (req, res, next) => {
+router.put('/updateStuff', (req, res, next) => {
     const id = req.query.id;
-    BusCompany.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Stuff.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteBusCompany', (req, res, next) => {
+router.delete('/deleteStuff', (req, res, next) => {
     const id = req.query.id;
-    BusCompany.findByIdAndRemove(id)
+    Stuff.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -278,41 +278,41 @@ router.delete('/deleteBusCompany', (req, res, next) => {
         });
 });
 //----------------AIRLINE-COMPANY-----------------
-router.post('/createAirlineCompany', (req, res, next) => {
-    const newAirlineCompany = new AirlineCompany(req.body);
-    newAirlineCompany.save()
-        .then(airlineCompany => {
-            console.log('+1 airlineCompany')
-            return res.json({success: true, airlineCompany: airlineCompany})
+router.post('/createPrices', (req, res, next) => {
+    const newPrices = new Prices(req.body);
+    newPrices.save()
+        .then(prices => {
+            console.log('+1 prices')
+            return res.json({success: true, prices: prices})
         })
         .catch(err => next(err));
 });
-router.get('/getAirlineCompany', (req, res, next) => {
-        AirlineCompany.find({}, (err, airlineCompanies) => {
-            let AirlineCompanyMap = [];
-            airlineCompanies.forEach((airlineCompany, index) => {
-                AirlineCompanyMap[index] = airlineCompany;
-            });
-            res.json(AirlineCompanyMap);
-        })
-            .catch(err => next(err));
+router.get('/getPrices', (req, res, next) => {
+    Prices.find({}, (err, airlineCompanies) => {
+        let PricesMap = [];
+        airlineCompanies.forEach((prices, index) => {
+            PricesMap[index] = prices;
+        });
+        res.json(PricesMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateAirlineCompany', (req, res, next) => {
+router.put('/updatePrices', (req, res, next) => {
     const id = req.query.id;
-    AirlineCompany.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Prices.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteAirlineCompany', (req, res, next) => {
+router.delete('/deletePrices', (req, res, next) => {
     const id = req.query.id;
-    AirlineCompany.findByIdAndRemove(id)
+    Prices.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -330,42 +330,42 @@ router.delete('/deleteAirlineCompany', (req, res, next) => {
             });
         });
 });
-//----------------HOTEL---------------------------
-router.post('/createHotel', (req, res, next) => {
-    const newHotel = new Hotel(req.body);
-    newHotel.save()
-        .then(hotel => {
-            console.log('+1 hotel')
-            return res.json({success: true, hotel: hotel})
+//----------------Food---------------------------
+router.post('/createFood', (req, res, next) => {
+    const newFood = new Food(req.body);
+    newFood.save()
+        .then(food => {
+            console.log('+1 food')
+            return res.json({success: true, food: food})
         })
         .catch(err => next(err));
 });
-router.get('/getHotel', (req, res, next) => {
-        Hotel.find({}, (err, hotels) => {
-            let HotelMap = [];
-            hotels.forEach((hotel, index) => {
-                HotelMap[index] = hotel;
-            });
-            res.json(HotelMap);
-        })
-            .catch(err => next(err));
+router.get('/getFood', (req, res, next) => {
+    Food.find({}, (err, foods) => {
+        let FoodMap = [];
+        foods.forEach((food, index) => {
+            FoodMap[index] = food;
+        });
+        res.json(FoodMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateHotel', (req, res, next) => {
+router.put('/updateFood', (req, res, next) => {
     const id = req.query.id;
-    Hotel.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Food.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteHotel', (req, res, next) => {
+router.delete('/deleteFood', (req, res, next) => {
     const id = req.query.id;
-    Hotel.findByIdAndRemove(id)
+    Food.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -383,42 +383,42 @@ router.delete('/deleteHotel', (req, res, next) => {
             });
         });
 });
-//----------------TOUR----------------------------
-router.post('/createTour', (req, res, next) => {
-    const newTour = new Tour(req.body);
-    newTour.save()
-        .then(tour => {
-            console.log('+1 tour')
-            return res.json({success: true, tour: tour})
+//----------------Snack----------------------------
+router.post('/createSnack', (req, res, next) => {
+    const newSnack = new Snack(req.body);
+    newSnack.save()
+        .then(snack => {
+            console.log('+1 snack')
+            return res.json({success: true, snack: snack})
         })
         .catch(err => next(err));
 });
-router.get('/getTour', (req, res, next) => {
-        Tour.find({}, (err, tours) => {
-            let TourMap = [];
-            tours.forEach((tour, index) => {
-                TourMap[index] = tour;
-            });
-            res.json(TourMap);
-        })
-            .catch(err => next(err));
+router.get('/getSnack', (req, res, next) => {
+    Snack.find({}, (err, snacks) => {
+        let SnackMap = [];
+        snacks.forEach((snack, index) => {
+            SnackMap[index] = snack;
+        });
+        res.json(SnackMap);
+    })
+        .catch(err => next(err));
 });
 
-router.put('/updateTour', (req, res, next) => {
+router.put('/updateSnack', (req, res, next) => {
     const id = req.query.id;
-    Tour.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Snack.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
-router.delete('/deleteTour', (req, res, next) => {
+router.delete('/deleteSnack', (req, res, next) => {
     const id = req.query.id;
-    Tour.findByIdAndRemove(id)
+    Snack.findByIdAndRemove(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -459,13 +459,13 @@ router.get('/getUser', (req, res, next) => {
 
 router.put('/updateUser', (req, res, next) => {
     const id = req.query.id;
-    User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    User.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
@@ -512,13 +512,13 @@ router.get('/getLog', (req, res, next) => {
 
 router.put('/updateLog', (req, res, next) => {
     const id = req.query.id;
-    Log.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Log.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update with id=${id}.`
                 });
-            } else res.send({ message: "was updated successfully." });
+            } else res.send({message: "was updated successfully."});
         })
 });
 
