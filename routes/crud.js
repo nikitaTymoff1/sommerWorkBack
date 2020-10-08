@@ -129,9 +129,9 @@ router.post('/createConsole', (req, res, next) => {
         .catch(err => next(err));
 });
 router.get('/getConsole', (req, res, next) => {
-    Console.find({}, (err, cities) => {
+    Console.find({}, (err, consoles) => {
         let ConsoleMap = [];
-        cities.forEach((console, index) => {
+        consoles.forEach((console, index) => {
             ConsoleMap[index] = console;
         });
         res.json(ConsoleMap);
