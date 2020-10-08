@@ -17,6 +17,8 @@ require('./models/airlineCompany');
 require('./models/busCompany');
 require('./models/log');
 
+//TODO змінити таблиці
+
 require('./config/passport')(passport);
 app.use(
     cors({
