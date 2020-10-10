@@ -545,7 +545,7 @@ router.delete('/deleteLog', (req, res, next) => {
 
 router.put('/makeAdmin', (req, res, next) => {
     const id = req.query.id;
-    Console.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
+    User.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data => {
             if (!data) {
                 res.status(404).send({
