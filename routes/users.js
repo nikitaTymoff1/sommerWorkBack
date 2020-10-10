@@ -16,7 +16,6 @@ router.get('/', utils.jwtAuth, (req, res, next) => {
             delete clone.hash
             delete clone.salt
             delete clone.__v
-            delete clone._id
             userMap[index] = clone;
         });
         res.json(userMap);
